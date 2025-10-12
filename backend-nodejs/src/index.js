@@ -7,10 +7,13 @@ const app = express();
 //logger
 app.use(morgan("combined"));
 //view engine
-const handlebarsInstance = handlebars.create();
-app.engine("handlebars", handlebarsInstance.engine);
-app.set("view engine", "handlebars");
+const handlebarsInstance = handlebars.create({ extname: ".hbs" });
+app.engine("hbs", handlebarsInstance.engine);
+app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources", "views"));
+console.log("ddd", __dirname);
+//static
+app.use(express.static(path.join(__dirname, "public")))
 // route
 app.get("/", (req, res) => {
   return res.render("home", { name: "Hoang Nguyen" });
