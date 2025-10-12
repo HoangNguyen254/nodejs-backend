@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon /src/index.js",
-    "watch":"sass src/resources/scss/index.scss src/public/css/index.css -w"
+    "watch": "sass src/resources/scss:src/public/css -w"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,7 @@
   "devDependencies": {
     "morgan": "^1.10.1",
     "nodemon": "^3.1.10",
-    "sass": "^1.93.2"
+    "sass": "^1.93.2",
+    "sass-migrator": "^2.4.2"
   }
 }
