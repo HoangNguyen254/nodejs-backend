@@ -12,10 +12,17 @@ app.engine("hbs", handlebarsInstance.engine);
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources", "views"));
 //static
-app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static(path.join(__dirname, "public")));
 // route
 app.get("/", (req, res) => {
   return res.render("home", { name: "Hoang Nguyen" });
+});
+app.get("/news", (req, res) => {
+  return res.render("news", { name: "Hoang Nguyen" });
+});
+app.get("/search", (req, res) => {
+  const { query } = req;
+  return res.render("search", { name: "Hoang Nguyen" });
 });
 app.listen(port, () => {
   console.log(`App is running on port: ${3000}`);
