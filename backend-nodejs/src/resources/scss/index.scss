@@ -1,8 +1,4 @@
 @use './variable' as vars;;
-* {
-  margin: 0;
-  padding: 0;
-}
 #container {
   width: 100%;
   background-color: vars.$red-color;
