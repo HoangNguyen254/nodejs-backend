@@ -11,7 +11,6 @@ const handlebarsInstance = handlebars.create({ extname: ".hbs" });
 app.engine("hbs", handlebarsInstance.engine);
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources", "views"));
-console.log("ddd", __dirname);
 //static
 app.use(express.static(path.join(__dirname, "public")))
 // route
