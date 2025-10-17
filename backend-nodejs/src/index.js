@@ -13,6 +13,9 @@ app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources", "views"));
 //static
 app.use(express.static(path.join(__dirname, "public")));
+// middleware
+app.use(express.urlencoded({ extended: true })); //parse body data from post request send from client
+app.use(express.json());
 // route
 app.get("/", (req, res) => {
   return res.render("home", { name: "Hoang Nguyen" });
@@ -21,8 +24,11 @@ app.get("/news", (req, res) => {
   return res.render("news", { name: "Hoang Nguyen" });
 });
 app.get("/search", (req, res) => {
-  const { query } = req;
   return res.render("search", { name: "Hoang Nguyen" });
+});
+app.post("/search", (req, res) => {
+  const data = req.body;
+  res.send("");
 });
 app.listen(port, () => {
   console.log(`App is running on port: ${3000}`);
