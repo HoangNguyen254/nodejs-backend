@@ -1,6 +1,6 @@
 {
-  "ext": "js json scss",
-  "events": {
-    "restart": "npx tailwindcss -i ./src/resources/css/input.css -o ./src/public/css/main.css"
-  }
+    "ext": "js json scss",
+    "events": {
+        "restart": "npx tailwindcss -i ./src/resources/css/input.css -o ./src/public/css/main.css"
+    }
 }
