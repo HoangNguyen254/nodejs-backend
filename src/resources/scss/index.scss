@@ -1,5 +1,5 @@
 @use './variable' as vars;
-       #container {
+#container {
     width: 100%;
     background-color: vars.$red-color;
     .child {
