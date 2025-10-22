@@ -8,7 +8,8 @@
         "start": "nodemon --watch /src/index.js",
         "watch": "sass src/resources/scss:src/public/css -w",
         "tailwind": "npx tailwindcss -i ./src/resources/css/input.css -o ./src/public/css/main.css",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "prepare": "husky"
     },
     "author": "",
     "license": "ISC",

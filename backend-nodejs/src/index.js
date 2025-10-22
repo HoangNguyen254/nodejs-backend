@@ -18,8 +18,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(express.urlencoded({ extended: true })) //parse body data from post request send from client
 app.use(express.json())
 // route
-route(app)
+       route(app)
 
 app.listen(port, () => {
-       console.log(`App is running on port: ${3000}`)
+    console.log(`App is running on port: ${3000}`)
 })
