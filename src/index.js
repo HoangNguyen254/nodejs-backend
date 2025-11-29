@@ -1,10 +1,14 @@
 const express = require('express')
 const morgan = require('morgan')
 const path = require('path')
+const db = require('./config/db')
 const handlebars = require('express-handlebars')
 const route = require('./routes')
+// Connect to moongo db
+db.connect()
 const port = 3000
 const app = express()
+
 //logger
 app.use(morgan('combined'))
 //view engine
@@ -17,6 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 // middleware
 app.use(express.urlencoded({ extended: true })) //parse body data from post request send from client
 app.use(express.json())
+
 // route
 route(app)
 
