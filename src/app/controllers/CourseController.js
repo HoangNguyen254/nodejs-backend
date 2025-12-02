@@ -1,11 +1,13 @@
 const CourseModel = require('../../app/models/Course')
 class SiteController {
-    async index(req, res, next) {
+    async show(req, res, next) {
+        const { slug } = req.params
         try {
-            const courses = await CourseModel.find({})
-            return res.render('home', {
-                courses: courses.map((course) => course.toObject()),
-            })
+            const course = await CourseModel.findOne({ slug })
+            if (!course) return res.send('Can not found course')
+            console.log('ccc', course)
+
+            return res.render('courses/show', { course: course.toObject() })
         } catch (error) {
             // console.error('error:', error)
             next(error)
