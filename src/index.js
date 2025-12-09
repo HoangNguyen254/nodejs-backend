@@ -3,6 +3,7 @@ const morgan = require('morgan')
 const path = require('path')
 const db = require('./config/db')
 const handlebars = require('express-handlebars')
+const overrideMethod = require('method-override')
 const route = require('./routes')
 // Connect to moongo db
 db.connect()
@@ -11,8 +12,15 @@ const app = express()
 
 //logger
 app.use(morgan('combined'))
+//override method
+app.use(overrideMethod('_method'))
 //view engine
-const handlebarsInstance = handlebars.create({ extname: '.hbs' })
+const handlebarsInstance = handlebars.create({
+    extname: '.hbs',
+    helpers: {
+        sum: (a, b) => a + b,
+    },
+})
 app.engine('hbs', handlebarsInstance.engine)
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'resources', 'views'))

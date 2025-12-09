@@ -1,20 +1,12 @@
 const newsRouter = require('./news')
 const siteRouter = require('./site')
 const coursesRouter = require('./courses')
+const meRouter = require('./me')
 function route(app) {
-    // app.get('/', (req, res) => {
-    //     return res.render('home', { name: 'Hoang Nguyen' })
-    // })
     app.use('/', siteRouter)
     app.use('/news', newsRouter)
+    app.use('/me', meRouter)
     app.use('/courses', coursesRouter)
-    // app.get('/search', (req, res) => {
-    //     return res.render('search', { name: 'Hoang Nguyen' })
-    // })
-    // app.post('/search', (req, res) => {
-    //     const data = req.body
-    //     res.send('')
-    // })
 }
 
 module.exports = route

@@ -1,0 +1,67 @@
+<div class="mt-4">
+  <h3>Khoa hoc co the khoi phuc</h3>
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Ten khoa hoc</th>
+        <th scope="col">Trinh do</th>
+        <th scope="col">Thoi gian tao</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each courses}}
+      <tr class="item-{{this._id}}">
+        <th scope="row">{{sum @index 1}}</th>
+        <td>{{this.name}}</td>
+        <td>{{this.description}}</td>
+        <td>{{this.createdAt}}</td>
+        <td>
+          <a href="#" class="btn btn-danger" data-id="{{this._id}}" data-toggle="modal"
+            data-target="#deleteCourseModal">Khoi phuc</a>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<div class="modal" tabindex="-1" id="deleteCourseModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Khoa hoc muon khoi phuc</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Ban co muon khoi phuc khong</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="button-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" id="button-delete" class="btn btn-danger">Restore</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let courseId;
+    $('#deleteCourseModal').on('show.bs.modal', function (event) {
+      const button = $(event.relatedTarget);
+      const id = button.data('id')
+      courseId = id
+    })
+    const btnDelete = document.getElementById('button-delete')
+    const btnClose = document.getElementById('button-close')
+    btnDelete.onclick = async function () {
+      await fetch(`/courses/${courseId}/restore`, {
+        method: 'POST'
+      })
+      const trId = document.querySelector(`.item-${courseId}`);
+      trId.remove()
+      btnClose.click()
+    }
+  })
+</script>

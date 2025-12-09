@@ -1,5 +1,11 @@
 const express = require('express')
 const router = express.Router()
 const courseControllder = require('../app/controllers/CourseController')
+router.get('/create', courseControllder.create)
+router.post('/store', courseControllder.store)
+router.get('/:id/edit', courseControllder.edit)
+router.put('/:id', courseControllder.update)
+router.delete('/:id', courseControllder.delete)
+router.post('/:id/restore', courseControllder.restore)
 router.get('/:slug', courseControllder.show)
 module.exports = router
