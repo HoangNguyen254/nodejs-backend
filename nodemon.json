@@ -1,8 +1,5 @@
 {
     "ext": "js,json,scss",
-    "events": {
-        "restart": "npx tailwindcss -i ./src/resources/css/input.css -o ./src/public/css/main.css"
-    },
     "watch": ["src"],
     "ignore": ["node_modules"],
     "exec": "node src/index.js",

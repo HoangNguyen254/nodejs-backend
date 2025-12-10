@@ -1,9 +1,28 @@
-<div class="mt-4">
+<div class="mt-4 container">
   <h3>Khoa hoc cua toi</h3>
   <a href="/me/trash/courses">Thung rac</a>
+
+
+  <div class="d-flex align-items-center">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+      <label class="form-check-label" for="defaultCheck1">
+        Chon tat ca
+      </label>
+    </div>
+    <select class="form-control form-control-sm checkbox-select-all-options">
+      <option disabled value="">--Hanh dong--</option>
+      <option value="1">Xoa</option>
+    </select>
+    <button type="button" class="btn btn-primary btn-sm">Thuc hien</button>
+  </div>
   <table class="table mt-4">
     <thead>
       <tr>
+        <th>
+          <input type="checkbox" value="">
+
+        </th>
         <th scope="col">#</th>
         <th scope="col">Ten khoa hoc</th>
         <th scope="col">Trinh do</th>
@@ -14,7 +33,10 @@
     <tbody>
       {{#each courses}}
       <tr class="item-{{this._id}}">
-        <th scope="row">{{sum @index 1}}</th>
+        <td>
+          <input type="checkbox" name="courseIds" value="{{this._id}}">
+        </td>
+        <td scope="row">{{sum @index 1}}</td>
         <td>{{this.name}}</td>
         <td>{{this.description}}</td>
         <td>{{this.createdAt}}</td>
