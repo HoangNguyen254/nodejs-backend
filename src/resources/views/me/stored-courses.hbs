@@ -4,12 +4,6 @@
 
 
   <div class="d-flex align-items-center">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-      <label class="form-check-label" for="defaultCheck1">
-        Chon tat ca
-      </label>
-    </div>
     <select class="form-control form-control-sm checkbox-select-all-options">
       <option disabled value="">--Hanh dong--</option>
       <option value="1">Xoa</option>
@@ -20,8 +14,7 @@
     <thead>
       <tr>
         <th>
-          <input type="checkbox" value="">
-
+          <input type="checkbox" id="checkbox-all" value="">
         </th>
         <th scope="col">#</th>
         <th scope="col">Ten khoa hoc</th>
@@ -34,7 +27,7 @@
       {{#each courses}}
       <tr class="item-{{this._id}}">
         <td>
-          <input type="checkbox" name="courseIds" value="{{this._id}}">
+          <input type="checkbox" name="courseIds[]" value="{{this._id}}">
         </td>
         <td scope="row">{{sum @index 1}}</td>
         <td>{{this.name}}</td>
@@ -72,6 +65,8 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     let courseId;
+    let checkboxAll = $('#checkbox-all');
+    const courseItemCheckbox = $('input[name="courseIds[]"]')
     $('#deleteCourseModal').on('show.bs.modal', function (event) {
       const button = $(event.relatedTarget);
       const id = button.data('id')
@@ -87,5 +82,13 @@
       trId.remove()
       btnClose.click()
     }
+    checkboxAll.change(function () {
+      const isChecked = $(this).prop('checked');
+      courseItemCheckbox.prop('checked',isChecked)
+    })
+    courseItemCheckbox.change(function(){
+      const isCheckedAll = courseItemCheckbox.length=== $('input[name="courseIds[]"]:checked').length;
+      checkboxAll.prop('checked',isCheckedAll)
+    })
   })
 </script>
