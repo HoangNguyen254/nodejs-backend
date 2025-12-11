@@ -66,5 +66,23 @@ class SiteController {
             // return res.json({error:'Fail to update'})
         }
     }
+    async handleFormAction(req, res, next) {
+        switch (req.body.action) {
+            case 'delete':
+                try {
+                    await CourseModel.deleteMany({
+                        _id: { $in: req.body.courseIds },
+                    })
+                    return res.redirect('/me/stored/courses')
+                    // return res.redirect('/me/stored/courses')
+                } catch (error) {
+                    next(error)
+                    // return res.json({error:'Fail to update'})
+                }
+                break
+            default:
+                return res.json({ message: 'invalid action' })
+        }
+    }
 }
 module.exports = new SiteController()
