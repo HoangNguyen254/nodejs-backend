@@ -1,8 +1,15 @@
 const CourseModel = require('../models/Course')
 class MeController {
     async storedCourses(req, res, next) {
+        let courseQuery = CourseModel.find({})
+        if (req.query?._sort !== undefined) {
+            console.log('req', req.query?._sort)
+            courseQuery = courseQuery.sort({
+                [req.query.column]: req.query?.type || 'asc',
+            })
+        }
         try {
-            const courses = await CourseModel.find({ deletedAt: null })
+            const courses = await courseQuery
             return res.render('me/stored-courses', {
                 courses: courses.map((item) => item.toObject()),
             })

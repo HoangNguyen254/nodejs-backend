@@ -19,8 +19,13 @@
           </th>
           <th scope="col">#</th>
           <th scope="col">Ten khoa hoc
-<img style="width: 20px;height:20px" src="/vendor/ionicons/arrow-up.svg" alt="svg"/>
-<img style="width: 20px;height:20px" src="/vendor/ionicons/arrow-down.svg" alt="svg"/>
+            {{{sortable 'name' _sort}}}
+            {{!-- <a href="?_sort&column=name&type=asc">
+              <img style="width: 20px;height:20px" src="/vendor/ionicons/arrow-up.svg" alt="svg" />
+            </a>
+              <a href="?_sort&column=name&type=desc">
+                        <img style="width: 20px;height:20px" src="/vendor/ionicons/arrow-down.svg" alt="svg" />
+            </a> --}}
 
           </th>
           <th scope="col">Trinh do</th>
@@ -97,11 +102,11 @@
       renderCheckAllSubmitBtn()
     })
     checkallSubmitButton.click(function (e) {
-        e.preventDefault()
-       const isSubmitable = !$(this).hasClass('disabled');
+      e.preventDefault()
+      const isSubmitable = !$(this).hasClass('disabled');
       if (isSubmitable) {
         formContainer.submit()
-      } 
+      }
     })
     checkallSubmitButton.on('submit', function (e) {
       const isSubmitable = !$(this).hasClass('disabled');
